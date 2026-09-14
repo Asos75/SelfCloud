@@ -1,0 +1,15 @@
+services:
+  onlyoffice:
+    image: onlyoffice/documentserver:latest
+    restart: unless-stopped
+    environment:
+      - JWT_ENABLED=true
+      - JWT_SECRET=<generate-a-long-random-string>
+    volumes:
+      - onlyoffice_data:/var/www/onlyoffice/Data
+      - onlyoffice_log:/var/log/onlyoffice
+    ports:
+      - "8089:80"
+volumes:
+  onlyoffice_data:
+  onlyoffice_log:
