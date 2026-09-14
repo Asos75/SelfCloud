@@ -45,11 +45,11 @@ scripts/
    ./scripts/generate-jwt-secret.sh
    ```
 
-   Prints a random secret and saves it to `compose/onlyoffice.env` (git-ignored). Re-run to rotate it later.
+   Writes `compose/onlyoffice.generated.yml` (git-ignored) — a copy of [compose/onlyoffice.yml](compose/onlyoffice.yml) with the secret filled in; the original template is left untouched. Re-run to rotate the secret later.
 
 4. **Create a compose deployment for OnlyOffice**
 
-   Create a second Compose service using [compose/onlyoffice.yml](compose/onlyoffice.yml) and set the `JWT_SECRET` environment variable to the value generated in step 3. Deploy and confirm it's reachable at `http://<server>:8088`.
+   Create a second Compose service in Dokploy using the contents of `compose/onlyoffice.generated.yml` from step 3. Deploy and confirm it's reachable at `http://<server>:8088`.
 
 5. **Connect OnlyOffice to Nextcloud**
 

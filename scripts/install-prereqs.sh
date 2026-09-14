@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # Installs everything SelfCloud needs on a fresh Linux host:
-#   - base dependencies (curl, ca-certificates, gnupg)
+#   - base dependencies (curl, ca-certificates, gnupg, openssl)
 #   - Docker Engine + the Compose plugin
 #   - Dokploy
 #
@@ -40,7 +40,7 @@ fi
 
 install_base_deps() {
   local missing=()
-  for pkg_cmd in "curl:curl" "gnupg:gpg" "ca-certificates:update-ca-certificates"; do
+  for pkg_cmd in "curl:curl" "gnupg:gpg" "ca-certificates:update-ca-certificates" "openssl:openssl"; do
     local pkg="${pkg_cmd%%:*}"
     local cmd="${pkg_cmd##*:}"
     command -v "$cmd" >/dev/null 2>&1 || missing+=("$pkg")
